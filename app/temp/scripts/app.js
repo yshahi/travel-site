@@ -50,9 +50,9 @@
 
 	var _MobileMenu2 = _interopRequireDefault(_MobileMenu);
 
-	var _revealOnScroll = __webpack_require__(3);
+	var _RevealOnScroll = __webpack_require__(3);
 
-	var _revealOnScroll2 = _interopRequireDefault(_revealOnScroll);
+	var _RevealOnScroll2 = _interopRequireDefault(_RevealOnScroll);
 
 	var _jquery = __webpack_require__(2);
 
@@ -62,20 +62,17 @@
 
 	var _StickyHeader2 = _interopRequireDefault(_StickyHeader);
 
-	var _modal = __webpack_require__(7);
+	var _Modal = __webpack_require__(7);
 
-	var _modal2 = _interopRequireDefault(_modal);
+	var _Modal2 = _interopRequireDefault(_Modal);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var mobileMenu = new _MobileMenu2.default();
-	//var revealOnScroll = new RevealOnScroll();
-
-	new _revealOnScroll2.default((0, _jquery2.default)(".feature-item"), "85%");
-	new _revealOnScroll2.default((0, _jquery2.default)(".testimonial"), "60%");
-
+	new _RevealOnScroll2.default((0, _jquery2.default)(".feature-item"), "85%");
+	new _RevealOnScroll2.default((0, _jquery2.default)(".testimonial"), "60%");
 	var stickyHeader = new _StickyHeader2.default();
-	var modal = new _modal2.default();
+	var modal = new _Modal2.default();
 
 /***/ },
 /* 1 */
@@ -10802,6 +10799,7 @@
 	  function StickyHeader() {
 	    _classCallCheck(this, StickyHeader);
 
+	    this.lazyImages = (0, _jquery2.default)(".lazyload");
 	    this.siteHeader = (0, _jquery2.default)(".site-header");
 	    this.headerTriggerElement = (0, _jquery2.default)(".large-hero__title");
 	    this.createHeaderWaypoint();
@@ -10809,9 +10807,17 @@
 	    this.headerLinks = (0, _jquery2.default)(".primary-nav a");
 	    this.createPageSectionWaypoints();
 	    this.addSmoothScrolling();
+	    this.refreshWaypoints();
 	  }
 
 	  _createClass(StickyHeader, [{
+	    key: 'refreshWaypoints',
+	    value: function refreshWaypoints() {
+	      this.lazyImages.load(function () {
+	        Waypoint.refreshAll();
+	      });
+	    }
+	  }, {
 	    key: 'addSmoothScrolling',
 	    value: function addSmoothScrolling() {
 	      this.headerLinks.smoothScroll();
@@ -11230,29 +11236,29 @@
 	      // clicking the open modal button
 	      this.openModalButton.click(this.openModal.bind(this));
 
-	      //clicking the x close modal button
+	      // clicking the x close modal button
 	      this.closeModalButton.click(this.closeModal.bind(this));
 
 	      // pushes any key
-	      (0, _jquery2.default)(document).keyup(this.closeModal.bind(this));
+	      (0, _jquery2.default)(document).keyup(this.keyPressHandler.bind(this));
 	    }
 	  }, {
 	    key: "keyPressHandler",
-	    value: function keyPressHandler() {
-	      if (e.keycode == 27) {
+	    value: function keyPressHandler(e) {
+	      if (e.keyCode == 27) {
 	        this.closeModal();
 	      }
 	    }
 	  }, {
 	    key: "openModal",
 	    value: function openModal() {
-	      this.modal.addClass("modal--is-visbile");
+	      this.modal.addClass("modal--is-visible");
 	      return false;
 	    }
 	  }, {
 	    key: "closeModal",
 	    value: function closeModal() {
-	      this.modal.removeClass("modal--is-visbile");
+	      this.modal.removeClass("modal--is-visible");
 	    }
 	  }]);
 

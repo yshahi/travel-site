@@ -1,5 +1,4 @@
 .primary-nav {
-
   padding-top: 10px;
 
   @mixin atMedium {
@@ -7,7 +6,6 @@
   }
 
   &--pull-right {
-
     @mixin atMedium {
       float: right;
     }
@@ -18,11 +16,11 @@
     padding: 0;
     @mixin clearfix;
   }
+
   li {
     list-style: none;
     display: inline-block;
     padding-right: 7px;
-
     @mixin atMedium {
       padding-right: 20px;
       float: left;
@@ -32,7 +30,6 @@
 
   li:last-child {
     padding-right: 0;
-
     @mixin atMedium {
       padding-right: 20px;
     }
@@ -40,20 +37,20 @@
 
   a {
     color: #FFF;
-    display: inline-block;
-    text-decoration: none;
     font-weight: 300;
+    text-decoration: none;
+    display: block;
     padding: 5px 8px;
     font-size: .8rem;
-    background-color: rgba($mainBlue, 0.5);
+    background-color: rgba($mainBlue, .5);
 
     @mixin atMedium {
-      padding: 12px 0;
       font-size: 1rem;
+      padding: 12px 0;
       background-color: transparent;
 
       &.is-current-link {
-        color: #FABB69;
+        color: #fabb69;
       }
     }
   }
